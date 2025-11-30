@@ -1,0 +1,23 @@
+.option {
+	cursor: pointer;
+	margin: 10px 0;
+	padding: 10px;
+	border: 2px solid #007bff;
+	border-radius: 5px;
+	background-color: #f8f9fa;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+}
+
+.isCorrect {
+	background-color: #28a745;
+	color: white;
+	border-color: #28a745;
+}
+
+.isIncorrect {
+	background-color: #dc3545;
+	color: white;
+	border-color: #dc3545;
+}

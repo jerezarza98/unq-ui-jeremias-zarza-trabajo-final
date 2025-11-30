@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { API_URL } from './config/constans'
-import { toastError } from './utils/toastify'
+import { API_URL } from '../config/constans'
+import { toastError } from '../utils/toastify'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home({ setDifficulty }) {
 	const [difficulties, setDifficulties] = useState([])
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		;(async () => {
@@ -21,6 +23,7 @@ export default function Home({ setDifficulty }) {
 		e.preventDefault()
 
 		setDifficulty(e.target.difficulties.value)
+		navigate('/game')
 	}
 
 	return (
