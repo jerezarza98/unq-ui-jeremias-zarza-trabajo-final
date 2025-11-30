@@ -6,7 +6,9 @@ import Question from '../components/Question'
 
 export default function Game({ difficulty }) {
 	const [questions, setQuestions] = useState([])
-	const [isNextQuestion, setIsNextQuestion] = useState(false)
+	const [score, setScore] = useState(0)
+	const [loading, setLoading] = useState(true)
+
 	useEffect(() => {
 		;(async () => {
 			try {
@@ -14,17 +16,43 @@ export default function Game({ difficulty }) {
 					`${API_URL}/questions?difficulty=${difficulty}`,
 				)
 				setQuestions(res.data)
-				// console.log(res.data)
 			} catch (error) {
 				toastError(error)
+			} finally {
+				setLoading(false)
 			}
 		})()
 	}, [])
 
+	const handleQuestions = () => {
+		const [, ...tail] = questions
+		setQuestions(tail)
+	}
+
+	const handleScore = isCorrect => {
+		if (isCorrect) setScore(score + 1)
+	}
+
 	return (
 		<div>
-			<h1>Question</h1>
-			{questions.length > 0 && <Question question={questions[0]} />}
+			{loading && <h2>Loading questions...</h2>}
+			{!loading && questions.length > 0 && (
+				<>
+					<h1>Question</h1>
+					<Question
+						key={questions[0].id}
+						question={questions[0]}
+						handleQuestions={handleQuestions}
+						handleScore={handleScore}
+					/>
+				</>
+			)}
+
+			{!loading && questions.length === 0 && (
+				<h1>
+					Your score is {score} on {difficulty} difficulty.
+				</h1>
+			)}
 		</div>
 	)
 }
