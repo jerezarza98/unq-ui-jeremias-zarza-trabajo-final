@@ -1,0 +1,53 @@
+.home {
+	margin-top: 120px;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 50px;
+}
+
+.home__title {
+	font-size: 3.5rem;
+	font-weight: bold;
+}
+
+.home__form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+.home__label {
+	font-size: 1.2rem;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.home__select {
+	padding: 0.6rem 1.2rem;
+	font-size: 1rem;
+	border-radius: 8px;
+	border: 2px solid #16288c;
+	outline: none;
+}
+
+.home__button {
+	padding: 0.8rem 1.5rem;
+	font-size: 1.2rem;
+	background-color: #16288c;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.home__button:hover {
+	background-color: #0f1f6c;
+}

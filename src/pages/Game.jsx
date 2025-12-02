@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import { API_URL } from '../config/constans'
 import { toastError } from '../utils/toastify'
 import Question from '../components/Question'
+import './Game.css'
+import Loading from '../components/Loading'
+import Score from '../components/Score'
 
 export default function Game({ difficulty }) {
 	const [questions, setQuestions] = useState([])
@@ -34,25 +37,24 @@ export default function Game({ difficulty }) {
 	}
 
 	return (
-		<div>
-			{loading && <h2>Loading questions...</h2>}
-			{!loading && questions.length > 0 && (
-				<>
-					<h1>Question</h1>
-					<Question
-						key={questions[0].id}
-						question={questions[0]}
-						handleQuestions={handleQuestions}
-						handleScore={handleScore}
-					/>
-				</>
-			)}
-
+		<>
+			{loading && <Loading />}
+			<div className='game'>
+				{!loading && questions.length > 0 && (
+					<>
+						<h1 className='game__title'>Question</h1>
+						<Question
+							key={questions[0].id}
+							question={questions[0]}
+							handleQuestions={handleQuestions}
+							handleScore={handleScore}
+						/>
+					</>
+				)}
+			</div>
 			{!loading && questions.length === 0 && (
-				<h1>
-					Your score is {score} on {difficulty} difficulty.
-				</h1>
+				<Score score={score} difficulty={difficulty} />
 			)}
-		</div>
+		</>
 	)
 }

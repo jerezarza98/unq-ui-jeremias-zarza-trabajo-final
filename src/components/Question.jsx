@@ -2,16 +2,15 @@ import { useState } from 'react'
 import { API_URL } from '../config/constans'
 import './Question.css'
 import axios from 'axios'
+import Option from './Option'
 
 export default function Question({ question, handleQuestions, handleScore }) {
-	// console.log(question)
 	const [isAnswered, setIsAnswered] = useState(false)
 	const [selectedOption, setSelectedOption] = useState(null)
 	const [isCorrect, setIsCorrect] = useState(null)
 
 	const handleOption = async e => {
 		if (isAnswered) return
-		// console.log(e)
 		const optionId = e.target.id
 		const res = await axios.post(`${API_URL}/answer`, {
 			questionId: question.id,
@@ -30,59 +29,46 @@ export default function Question({ question, handleQuestions, handleScore }) {
 	}
 
 	return (
-		<div>
-			<p>{question.question}</p>
-			<div>
-				<div
-					id='option1'
-					className={`option ${
-						selectedOption === 'option1'
-							? isCorrect
-								? 'isCorrect'
-								: 'isIncorrect'
-							: ''
-					}`}
-					onClick={handleOption}>
-					{question.option1}
-				</div>
-				<div
-					id='option2'
-					className={`option ${
-						selectedOption === 'option2'
-							? isCorrect
-								? 'isCorrect'
-								: 'isIncorrect'
-							: ''
-					}`}
-					onClick={handleOption}>
-					{question.option2}
-				</div>
-				<div
-					id='option3'
-					className={`option ${
-						selectedOption === 'option3'
-							? isCorrect
-								? 'isCorrect'
-								: 'isIncorrect'
-							: ''
-					}`}
-					onClick={handleOption}>
-					{question.option3}
-				</div>
-				<div
-					id='option4'
-					className={`option ${
-						selectedOption === 'option4'
-							? isCorrect
-								? 'isCorrect'
-								: 'isIncorrect'
-							: ''
-					}`}
-					onClick={handleOption}>
-					{question.option4}
-				</div>
+		<div className='question'>
+			<div className='question__question-container'>
+				<p className='question__question'>{question.question}</p>
 			</div>
-			{isAnswered && <button onClick={handleClick}>Next Question</button>}
+
+			<div className='question__options'>
+				<Option
+					id={'option1'}
+					option={question.option1}
+					handleOption={handleOption}
+					isCorrect={isCorrect}
+					selectedOption={selectedOption}
+				/>
+				<Option
+					id={'option2'}
+					option={question.option2}
+					handleOption={handleOption}
+					isCorrect={isCorrect}
+					selectedOption={selectedOption}
+				/>
+				<Option
+					id={'option3'}
+					option={question.option3}
+					handleOption={handleOption}
+					isCorrect={isCorrect}
+					selectedOption={selectedOption}
+				/>
+				<Option
+					id={'option4'}
+					option={question.option4}
+					handleOption={handleOption}
+					isCorrect={isCorrect}
+					selectedOption={selectedOption}
+				/>
+			</div>
+			{isAnswered && (
+				<button className='question__nextQuestionBtn' onClick={handleClick}>
+					Next Question
+				</button>
+			)}
 		</div>
 	)
 }

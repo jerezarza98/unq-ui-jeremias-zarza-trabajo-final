@@ -3,10 +3,13 @@ import { API_URL } from '../config/constans'
 import { toastError } from '../utils/toastify'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import './Home.css'
+import Loading from '../components/Loading'
 
 export default function Home({ setDifficulty }) {
 	const [difficulties, setDifficulties] = useState([])
 	const navigate = useNavigate()
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		;(async () => {
@@ -15,6 +18,8 @@ export default function Home({ setDifficulty }) {
 				setDifficulties(res.data)
 			} catch (error) {
 				toastError(error)
+			} finally {
+				setLoading(false)
 			}
 		})()
 	}, [])
@@ -26,21 +31,28 @@ export default function Home({ setDifficulty }) {
 		navigate('/game')
 	}
 
-	return (
-		<main className='container'>
-			<h1>Trivia Crack</h1>
-			{difficulties.length > 0 && (
-				<form onSubmit={handleSubmit}>
-					<label htmlFor='difficulties'>Select a difficulty: </label>
-					<select name='difficulties'>
-						{difficulties.map(difficulty => (
-							<option key={difficulty} value={difficulty}>
-								{difficulty}
-							</option>
-						))}
-					</select>
+	if (loading) return <Loading />
 
-					<button>Play</button>
+	return (
+		<main className='home'>
+			<h1 className='home__title'>Trivia Crack</h1>
+			{difficulties.length > 0 && (
+				<form onSubmit={handleSubmit} className='home__form'>
+					<label htmlFor='difficulties' className='home__label'>
+						Select a difficulty:
+						<select name='difficulties' className='home__select'>
+							{difficulties.map(difficulty => (
+								<option
+									key={difficulty}
+									value={difficulty}
+									className='home__option'>
+									{difficulty}
+								</option>
+							))}
+						</select>
+					</label>
+
+					<button className='home__button'>Play</button>
 				</form>
 			)}
 		</main>
