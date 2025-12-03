@@ -3,6 +3,7 @@ import { API_URL } from '../config/constans'
 import './Question.css'
 import axios from 'axios'
 import Option from './Option'
+import { postAnswer } from '../services/anwers'
 
 export default function Question({
 	question,
@@ -17,20 +18,13 @@ export default function Question({
 	const handleOption = async e => {
 		if (isAnswered) return
 		const optionId = e.target.id
-		const res = await axios.post(`${API_URL}/answer`, {
-			questionId: question.id,
-			option: optionId,
-		})
+		const data = await postAnswer({ questionId: question.id, option: optionId })
 
-		handleScore(res.data.answer)
+		handleScore(data.answer)
 
 		setIsAnswered(true)
 		setSelectedOption(optionId)
-		setIsCorrect(res.data.answer)
-	}
-
-	const handleClick = () => {
-		handleQuestions()
+		setIsCorrect(data.answer)
 	}
 
 	return (
@@ -75,7 +69,9 @@ export default function Question({
 				/>
 			</div>
 			{isAnswered && (
-				<button className='question__nextQuestionBtn' onClick={handleClick}>
+				<button
+					className='question__nextQuestionBtn'
+					onClick={() => handleQuestions()}>
 					Next Question
 				</button>
 			)}

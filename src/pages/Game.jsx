@@ -1,36 +1,13 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { API_URL } from '../config/constans'
-import { toastError } from '../utils/toastify'
+import { useState } from 'react'
 import Question from '../components/Question'
 import './Game.css'
 import Loading from '../components/Loading'
 import Score from '../components/Score'
+import { useQuestions } from '../hooks/useQuestions'
 
-export default function Game({ difficulty }) {
-	const [questions, setQuestions] = useState([])
+export default function Game() {
+	const [questions, handleQuestions, loading] = useQuestions()
 	const [score, setScore] = useState(0)
-	const [loading, setLoading] = useState(true)
-
-	useEffect(() => {
-		;(async () => {
-			try {
-				const res = await axios.get(
-					`${API_URL}/questions?difficulty=${difficulty}`,
-				)
-				setQuestions(res.data)
-			} catch (error) {
-				toastError(error)
-			} finally {
-				setLoading(false)
-			}
-		})()
-	}, [])
-
-	const handleQuestions = () => {
-		const [, ...tail] = questions
-		setQuestions(tail)
-	}
 
 	const handleScore = isCorrect => {
 		if (isCorrect) setScore(score + 1)
@@ -53,9 +30,7 @@ export default function Game({ difficulty }) {
 					</>
 				)}
 			</div>
-			{!loading && questions.length === 0 && (
-				<Score score={score} difficulty={difficulty} />
-			)}
+			{!loading && questions.length === 0 && <Score score={score} />}
 		</>
 	)
 }

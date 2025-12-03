@@ -1,28 +1,14 @@
-import { useEffect, useState } from 'react'
-import { API_URL } from '../config/constans'
-import { toastError } from '../utils/toastify'
-import axios from 'axios'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Home.css'
 import Loading from '../components/Loading'
+import { DifficultyContext } from '../providers/DifficultyProvider'
+import { useDifficulties } from '../hooks/useDifficulties'
 
-export default function Home({ setDifficulty }) {
-	const [difficulties, setDifficulties] = useState([])
+export default function Home() {
+	const { setDifficulty } = useContext(DifficultyContext)
+	const [difficulties, loading] = useDifficulties()
 	const navigate = useNavigate()
-	const [loading, setLoading] = useState(true)
-
-	useEffect(() => {
-		;(async () => {
-			try {
-				const res = await axios.get(`${API_URL}/difficulty`)
-				setDifficulties(res.data)
-			} catch (error) {
-				toastError(error)
-			} finally {
-				setLoading(false)
-			}
-		})()
-	}, [])
 
 	const handleSubmit = e => {
 		e.preventDefault()

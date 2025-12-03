@@ -2,16 +2,16 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import { useState } from 'react'
 import Game from './pages/Game'
+import DifficultyProvider from './providers/DifficultyProvider'
 
 function App() {
-	const [difficulty, setDifficulty] = useState('easy')
 	return (
-		<>
+		<DifficultyProvider>
 			<Routes>
-				<Route path='/' element={<Home setDifficulty={setDifficulty} />} />
-				<Route path='/game' element={<Game difficulty={difficulty} />} />
+				<Route path='/' element={<Home />} />
+				<Route path='/game' element={<Game />} />
 			</Routes>
-		</>
+		</DifficultyProvider>
 	)
 }
 

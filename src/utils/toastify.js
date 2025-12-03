@@ -11,7 +11,3 @@ export function toastError(error) {
 	}
 	toast.error(message, options)
 }
-
-export function toastSuccess(message) {
-	toast.success(message, options)
-}
