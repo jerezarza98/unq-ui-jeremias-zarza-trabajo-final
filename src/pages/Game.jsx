@@ -48,6 +48,7 @@ export default function Game({ difficulty }) {
 							question={questions[0]}
 							handleQuestions={handleQuestions}
 							handleScore={handleScore}
+							score={score}
 						/>
 					</>
 				)}

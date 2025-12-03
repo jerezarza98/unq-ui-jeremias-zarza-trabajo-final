@@ -19,6 +19,20 @@
 	margin-bottom: 16px;
 }
 
+.question__score {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+.question__is-zero {
+	color: #dc3545;
+}
+
+.question__is-not-zero {
+	color: #28a745;
+}
+
 .question__options {
 	width: 100%;
 	max-width: 600px;

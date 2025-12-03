@@ -4,7 +4,12 @@ import './Question.css'
 import axios from 'axios'
 import Option from './Option'
 
-export default function Question({ question, handleQuestions, handleScore }) {
+export default function Question({
+	question,
+	handleQuestions,
+	handleScore,
+	score,
+}) {
 	const [isAnswered, setIsAnswered] = useState(false)
 	const [selectedOption, setSelectedOption] = useState(null)
 	const [isCorrect, setIsCorrect] = useState(null)
@@ -33,6 +38,11 @@ export default function Question({ question, handleQuestions, handleScore }) {
 			<div className='question__question-container'>
 				<p className='question__question'>{question.question}</p>
 			</div>
+
+			<p
+				className={`question__score ${score === 0 ? 'question__is-zero' : 'question__is-not-zero'}`}>
+				{score}
+			</p>
 
 			<div className='question__options'>
 				<Option
