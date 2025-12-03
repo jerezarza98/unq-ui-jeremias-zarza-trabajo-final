@@ -5,3 +5,13 @@
 	align-items: center;
 	font-size: 1.5rem;
 }
+
+@media (max-width: 480px) {
+	.loading {
+		padding: 0 1rem;
+	}
+
+	.loading__title {
+		font-size: 1.2rem;
+	}
+}

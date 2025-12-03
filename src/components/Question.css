@@ -84,3 +84,38 @@
 .question__nextQuestionBtn:hover {
 	background-color: #0f1f6c;
 }
+
+@media (max-width: 480px) {
+	.question {
+		gap: 0.8rem;
+		padding: 0 10px;
+	}
+
+	.question__question-container {
+		height: auto;
+		min-height: 120px;
+		font-size: 1.2rem;
+		padding: 15px;
+	}
+
+	.question__score {
+		font-size: 1.6rem;
+	}
+
+	.question__options {
+		grid-template-columns: 1fr;
+		gap: 10px;
+	}
+
+	.question__option {
+		font-size: 0.95rem;
+		padding: 14px;
+		min-height: 60px;
+	}
+
+	.question__nextQuestionBtn {
+		width: 100%;
+		font-size: 1rem;
+		padding: 12px;
+	}
+}
