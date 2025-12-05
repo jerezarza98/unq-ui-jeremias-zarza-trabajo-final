@@ -1,0 +1,47 @@
+.error404 {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 60px;
+}
+
+.error404__title {
+	font-size: 3rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.error404__button {
+	padding: 0.8rem 1.5rem;
+	font-size: 1.2rem;
+	background-color: #16288c;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.error404__button:hover {
+	background-color: #0f1f6c;
+}
+
+@media (max-width: 480px) {
+	.error404 {
+		gap: 30px;
+		padding: 10px;
+	}
+
+	.error404__title {
+		font-size: 2.2rem;
+		text-align: center;
+	}
+
+	.error404__button {
+		width: 100%;
+		padding: 0.9rem;
+		font-size: 1.1rem;
+	}
+}

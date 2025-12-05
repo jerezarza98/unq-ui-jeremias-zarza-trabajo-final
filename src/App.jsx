@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import { useState } from 'react'
 import Game from './pages/Game'
 import DifficultyProvider from './providers/DifficultyProvider'
+import Error404 from './pages/Error404'
 
 function App() {
 	return (
@@ -10,6 +11,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/game' element={<Game />} />
+				<Route path='*' element={<Error404 />} />
 			</Routes>
 		</DifficultyProvider>
 	)
