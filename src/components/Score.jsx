@@ -14,21 +14,31 @@ export default function Score({ score }) {
 	useEffect(() => {
 		if (hasRun.current) return
 		hasRun.current = true
-		if (score === 0) {
+
+		const rankingFromStorage = window.localStorage.getItem('ranking')
+		let ranking = rankingFromStorage ? JSON.parse(rankingFromStorage) : []
+
+		const rankingDifficulty = ranking.filter(
+			user => user.difficulty === difficulty,
+		)
+
+		if (
+			score === 0 ||
+			(rankingDifficulty.length === 10 &&
+				rankingDifficulty.every(user => user.score >= score))
+		) {
+			console.log('entró aca')
 			setMessage(
 				`You didn't make it into the ranking on ${difficulty} difficulty.`,
 			)
 			return
 		}
-		const rankingFromStorage = window.localStorage.getItem('ranking')
-		let ranking = rankingFromStorage ? JSON.parse(rankingFromStorage) : []
+
 		const index = ranking.findIndex(
 			user => user.name === name && user.difficulty === difficulty,
 		)
 
-		// console.log(index)
-
-		if (index === -1) {
+		if (rankingDifficulty.length < 10 && index === -1) {
 			console.log('Jugador Nuevo')
 
 			ranking = [
@@ -37,24 +47,34 @@ export default function Score({ score }) {
 			]
 
 			setMessage(`You made it into the ranking on ${difficulty} difficulty.`)
-		} else {
+
+			window.localStorage.setItem(
+				'ranking',
+				JSON.stringify(ranking.sort((a, b) => b.score - a.score)),
+			)
+			return
+		}
+
+		if (index !== -1) {
 			const user = ranking[index]
 
-			if (score > user.score) {
-				console.log('Jugador con puntaje mejor')
-				ranking[index] = {
-					name: name,
-					score: score,
-					difficulty: difficulty,
-				}
-				setMessage(`You made it into the ranking on ${difficulty} difficulty.`)
-			} else {
-				console.log('Jugador con puntaje menor')
-				setMessage(
-					`You didn't make it into the ranking on ${difficulty} difficulty.`,
-				)
+			console.log('Mismo jugador con puntaje mejor')
+			ranking[index] = {
+				name: name,
+				score: score,
+				difficulty: difficulty,
+			}
+		} else {
+			console.log('Jugador nuevo con mejor puntaje')
+			const user = rankingDifficulty[rankingDifficulty.length - 1]
+			const indexUser = ranking.indexOf(user)
+			ranking[indexUser] = {
+				name: name,
+				score: score,
+				difficulty: difficulty,
 			}
 		}
+		setMessage(`You made it into the ranking on ${difficulty} difficulty.`)
 		window.localStorage.setItem(
 			'ranking',
 			JSON.stringify(ranking.sort((a, b) => b.score - a.score)),
