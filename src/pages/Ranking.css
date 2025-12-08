@@ -1,0 +1,212 @@
+.ranking {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px;
+}
+
+.ranking__title {
+	font-size: 3.5rem;
+	font-weight: bold;
+	margin-bottom: 60px;
+}
+
+.ranking__buttons {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin-bottom: 16px;
+}
+
+.ranking__button {
+	width: 100px;
+	padding: 0.2rem 0;
+	font-size: 1.2rem;
+	background-color: #16288c;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.ranking__button:hover {
+	background-color: #0f1f6c;
+}
+
+.ranking__empty-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.ranking__empty {
+	font-size: 2rem;
+	opacity: 0.8;
+	text-align: center;
+}
+
+.ranking__container {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.ranking__difficulty {
+	font-size: 1.6rem;
+	font-weight: 600;
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+.ranking__items {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.ranking__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 18px 22px;
+	border-radius: 14px;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(12px);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	transition:
+		transform 0.2s ease,
+		background 0.2s ease;
+}
+
+.ranking__item:hover {
+	transform: translateY(-2px);
+	background: rgba(255, 255, 255, 0.12);
+}
+
+.ranking__rank-name {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ranking__rank {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	backdrop-filter: blur(8px);
+	font-size: 1.3rem;
+	font-weight: 700;
+}
+
+.ranking__name {
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+.ranking__score {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 1.1rem;
+}
+
+.ranking__score span {
+	opacity: 0.7;
+	font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+	.ranking {
+		height: 100%;
+		padding: 20px;
+		height: auto;
+	}
+
+	.ranking__title {
+		font-size: 2.2rem;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+
+	.ranking__buttons {
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.ranking__button {
+		width: 140px;
+		font-size: 1.1rem;
+		padding: 0.4rem 0.6rem;
+	}
+	.ranking__empty-container {
+		padding: 20px;
+	}
+
+	.ranking__empty {
+		font-size: 1.4rem;
+	}
+
+	.ranking__container {
+		max-width: 100%;
+		margin-top: 10px;
+		gap: 16px;
+		padding: 0 10px;
+	}
+
+	.ranking__difficulty {
+		font-size: 1.3rem;
+	}
+
+	.ranking__items {
+		gap: 10px;
+	}
+
+	.ranking__item {
+		flex-wrap: wrap;
+		padding: 14px 16px;
+		border-radius: 12px;
+	}
+
+	.ranking__rank-name {
+		gap: 8px;
+	}
+
+	.ranking__rank {
+		width: 26px;
+		height: 26px;
+		font-size: 1.05rem;
+	}
+
+	.ranking__name {
+		font-size: 1rem;
+	}
+
+	.ranking__score {
+		font-size: 1rem;
+	}
+
+	.ranking__score span {
+		font-size: 0.8rem;
+	}
+}
+
+@media (max-width: 220px) {
+	.ranking__item {
+		justify-content: center;
+	}
+}
