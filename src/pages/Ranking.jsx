@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { getRanking } from '../logic/storage'
 import './Ranking.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function Ranking() {
 	const [difficulty, setDifficulty] = useState('easy')
 	const ranking = getRanking()
+	const navigate = useNavigate()
 
 	const filteredRanking = ranking.filter(user => user.difficulty === difficulty)
 	return (
@@ -57,6 +59,9 @@ export default function Ranking() {
 					</div>
 				</div>
 			)}
+			<button className='ranking__button' onClick={() => navigate('/')}>
+				Menu
+			</button>
 		</div>
 	)
 }

@@ -20,11 +20,14 @@ export default function Score({ score }) {
 
 	return (
 		<div className='score'>
-			<h1>Well done, {name}!!!</h1>
-			<p className='score__title'>
-				Your score is {score} on {difficulty} difficulty.
-			</p>
-			<p>{message}</p>
+			<div>
+				<h1 className='score__title'>Well done, {name}!!!</h1>
+				<p className='score__score-difficulty'>
+					Your score is {score} on {difficulty} difficulty.
+				</p>
+			</div>
+
+			<p className='score__message'>{message}</p>
 			<button className='score__button' onClick={handleOnClick}>
 				Play again
 			</button>

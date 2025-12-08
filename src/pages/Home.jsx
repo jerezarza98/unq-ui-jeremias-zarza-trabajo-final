@@ -53,15 +53,20 @@ export default function Home() {
 							type='text'
 							name='name'
 							value={name}
+							className='home__input'
 							onChange={e => setName(e.target.value)}
 						/>
+						{nameError && (
+							<p className='home__error'>the field "Name" cannot be empty</p>
+						)}
 					</label>
-					{nameError && <p>the field "Name" cannot be empty</p>}
 
 					<button className='home__button'>Play</button>
 				</form>
 			)}
-			<button onClick={() => navigate('/ranking')}>Ranking</button>
+			<button className='home__button' onClick={() => navigate('/ranking')}>
+				Ranking
+			</button>
 		</main>
 	)
 }
