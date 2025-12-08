@@ -1,22 +1,26 @@
 import { useEffect, useState } from 'react'
+import { getRanking } from '../logic/storage'
 
 export default function Ranking() {
-	const [ranking, setRanking] = useState(() => {
-		const rankingFromStorage = window.localStorage.getItem('ranking')
+	const [difficulty, setDifficulty] = useState('easy')
+	const ranking = getRanking()
 
-		return rankingFromStorage ? JSON.parse(rankingFromStorage) : []
-	})
-
-	console.log(ranking)
-
+	const filteredRanking = ranking.filter(user => user.difficulty === difficulty)
 	return (
 		<div>
 			<h1>Ranking</h1>
-			{ranking.length === 0 ? (
+			<div>
+				<button onClick={() => setDifficulty('easy')}>easy</button>
+				<button onClick={() => setDifficulty('normal')}>normal</button>
+				<button onClick={() => setDifficulty('hard')}>hard</button>
+				<button onClick={() => setDifficulty('extreme')}>extreme</button>
+			</div>
+			{filteredRanking.length === 0 ? (
 				<p>Empty</p>
 			) : (
 				<div>
-					{ranking.map(user => (
+					<p>{difficulty}</p>
+					{filteredRanking.map(user => (
 						<div key={`${user.name}-${user.difficulty}`}>
 							<p>{user.name}</p>
 							<p>{user.score}</p>
@@ -25,12 +29,6 @@ export default function Ranking() {
 					))}
 				</div>
 			)}
-			<div>
-				<button>easy</button>
-				<button>normal</button>
-				<button>hard</button>
-				<button>extreme</button>
-			</div>
 		</div>
 	)
 }
