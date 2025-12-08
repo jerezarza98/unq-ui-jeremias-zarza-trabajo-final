@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Question from '../components/Question'
 import './Game.css'
 import Loading from '../components/Loading'

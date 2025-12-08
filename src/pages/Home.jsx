@@ -33,7 +33,7 @@ export default function Home() {
 			<h1 className='home__title'>Trivia Crack</h1>
 			{difficulties.length > 0 && (
 				<form onSubmit={handleSubmit} className='home__form'>
-					<label htmlFor='difficulties' className='home__label'>
+					<label className='home__label'>
 						Select a difficulty:
 						<select name='difficulties' className='home__select'>
 							{difficulties.map(difficulty => (

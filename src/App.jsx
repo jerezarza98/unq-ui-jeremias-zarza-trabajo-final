@@ -5,6 +5,7 @@ import DifficultyProvider from './providers/DifficultyProvider'
 import Error404 from './pages/Error404'
 import NameProvider from './providers/NameProvider'
 import Ranking from './pages/Ranking'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 	return (
@@ -12,7 +13,14 @@ function App() {
 			<NameProvider>
 				<Routes>
 					<Route path='/' element={<Home />} />
-					<Route path='/game' element={<Game />} />
+					<Route
+						path='/game'
+						element={
+							<ProtectedRoute>
+								<Game />
+							</ProtectedRoute>
+						}
+					/>
 
 					<Route path='/ranking' element={<Ranking />} />
 
