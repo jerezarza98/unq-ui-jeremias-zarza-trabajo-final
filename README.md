@@ -1,16 +1,38 @@
-# React + Vite
+# Trivia Crack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web de preguntas y respuestas desarrollada como Trabajo Final Integrador para la materia **Construcción de Interfaces de Usuario** de la Universidad Nacional de Quilmes (UNQ). El proyecto implementa una experiencia de trivia al estilo Preguntados, donde el usuario puede seleccionar la dificultad, responder preguntas de opción múltiple y obtener una puntuación final.
 
-Currently, two official plugins are available:
+La interfaz está construida con React y Vite, y el juego consume una API REST externa que proporciona las preguntas en tiempo real y valida las respuestas. Además, gestiona estados dinámicos que permiten una interacción fluida y una experiencia de juego continua durante toda la partida.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+El sistema también incluye un ranking por dificultad, donde se registran y muestran los usuarios con los mejores puntajes, permitiendo comparar resultados y fomentar la competencia entre los participantes.
 
-## React Compiler
+## Instalación
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### Requisitos
 
-## Expanding the ESLint configuration
+- Git
+- Node.js (v18+)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Pasos
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/jerezarza98/unq-ui-jeremias-zarza-trabajo-final
+
+cd unq-ui-jeremias-zarza-trabajo-final
+```
+
+2. Instalar dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecutar localmente:
+
+```
+npm run dev
+```
+
+La aplicación estará disponible en `http://localhost:5173` (o el puerto que indique Vite).
